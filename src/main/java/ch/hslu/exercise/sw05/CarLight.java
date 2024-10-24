@@ -22,11 +22,11 @@ public class CarLight implements CountingSwitchable {
     }
 
     public boolean isSwitchedOn(){
-        return this.lightRunning == true;
+        return this.lightRunning;
     }
 
     public boolean isSwitchedOff(){
-        return this.lightRunning == false;
+        return !this.lightRunning;
     }
 
     public long getSwitchCount(){

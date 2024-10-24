@@ -23,11 +23,11 @@ public class Motor implements CountingSwitchable {
     }
 
     public boolean isSwitchedOn(){
-        return this.motorRunning == true;
+        return this.motorRunning;
     }
 
     public boolean isSwitchedOff(){
-        return this.motorRunning == false;
+        return !this.motorRunning;
     }
 
     public long getSwitchCount(){
