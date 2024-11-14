@@ -1,5 +1,6 @@
 package ch.hslu.exercise.sw08;
 
+import nl.jqno.equalsverifier.EqualsVerifier;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -96,5 +97,10 @@ class TemperaturTest {
     @Test
     void testIfConvertCelsiusToKelvinConvertsCorrectly(){
         assertEquals(351.15F,  Temperatur.convertCelsiusToKelvin(78F));
+    }
+
+    @Test
+    void testEqualsAndHashCode(){
+        EqualsVerifier.simple().forClass(Temperatur.class).verify();
     }
 }

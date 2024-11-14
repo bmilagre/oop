@@ -28,11 +28,19 @@ public class TemperaturVerlauf implements ITemperaturVerlauf {
 
     @Override
     public Temperatur max(){
+        if(temperaturen.isEmpty()){
+            return null;
+        }
+
         return Collections.max(temperaturen);
     }
 
     @Override
     public Temperatur min(){
+        if(temperaturen.isEmpty()){
+            return null;
+        }
+
         return Collections.min(temperaturen);
     }
 

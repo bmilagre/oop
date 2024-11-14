@@ -1,5 +1,6 @@
 package ch.hslu.exercise.sw08;
 
+import nl.jqno.equalsverifier.EqualsVerifier;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -77,5 +78,12 @@ class TemperaturVerlaufTest {
         temperaturVerlauf.add(temperaturThree);
 
         assertEquals(temperaturOne, temperaturVerlauf.min());
+    }
+
+    @Test
+    void testIfTemperaturVerlaufReturnsZeroWhenEmpty() {
+        TemperaturVerlauf temperaturVerlauf = new TemperaturVerlauf();
+
+        assertEquals(null, temperaturVerlauf.max());
     }
 }

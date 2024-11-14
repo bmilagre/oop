@@ -1,11 +1,3 @@
-/*
- * Copyright (c) 2024. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
- * Morbi non lorem porttitor neque feugiat blandit. Ut vitae ipsum eget quam lacinia accumsan.
- * Etiam sed turpis ac ipsum condimentum fringilla. Maecenas magna.
- * Proin dapibus sapien vel ante. Aliquam erat volutpat. Pellentesque sagittis ligula eget metus.
- * Vestibulum commodo. Ut rhoncus gravida arcu.
- */
-
 package ch.hslu.exercise.sw07;
 
 import java.util.Objects;
@@ -16,7 +8,13 @@ public class Person implements Comparable<Person> {
     private String lastName;
     private int age;
 
-    public Person(final long id, final String firstName, final String lastName, final int age) {
+    public static void main(final String[] args){
+        Person x = new Person(3, "Tom", "Muster", 12);
+
+        System.out.println(x.toString());
+    }
+
+    public Person(long id, String firstName, String lastName, int age) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -71,7 +69,7 @@ public class Person implements Comparable<Person> {
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.id,this.firstName, this.lastName, this.age);
+        return Objects.hash(this.id, this.firstName, this.lastName, this.age);
     }
 
     @Override
