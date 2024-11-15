@@ -7,7 +7,7 @@ package ch.hslu.exercise.sw08;
  * @author Bruno Milagre
  * @version 1.0
  */
-public class Rectangle extends Shape {
+public final class Rectangle extends Shape {
     private int width;
     private int height;
 

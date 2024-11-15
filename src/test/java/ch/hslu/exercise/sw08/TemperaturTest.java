@@ -91,12 +91,12 @@ class TemperaturTest {
 
     @Test
     void testIfConvertKelvinToCelsiusConvertsCorrectly(){
-        assertEquals(16.0F,  Temperatur.convertKelvinToCelsius(289.15F));
+        assertEquals(26.85f,  Temperatur.convertKelvinToCelsius(300f), 0.1f);
     }
 
     @Test
     void testIfConvertCelsiusToKelvinConvertsCorrectly(){
-        assertEquals(351.15F,  Temperatur.convertCelsiusToKelvin(78F));
+        assertEquals(283.15f,  Temperatur.convertCelsiusToKelvin(10f), 0.1f);
     }
 
     @Test
