@@ -9,6 +9,7 @@ import java.util.Objects;
 public class Room {
     private final int roomNumber;  // Unique identifier for the room, must be within 100-999.
     private final int capacity;    // Number of people the room can hold, must be at least 3.
+    private RoomState state;
 
     /**
      * Constructor for Room.
@@ -29,6 +30,7 @@ public class Room {
 
         this.roomNumber = roomNumber;
         this.capacity = capacity;
+        this.state = RoomState.AVAILABLE;
     }
 
     /**
@@ -47,6 +49,23 @@ public class Room {
      */
     protected int getCapacity() {
         return this.capacity;
+    }
+
+    /**
+     * Sets the state of the room
+     *
+     */
+    protected void setState(RoomState state) {
+        this.state = state;
+    }
+
+    /**
+     * Gets the room state
+     *
+     * @return The room state.
+     */
+    public RoomState getState() {
+        return this.state;
     }
 
     /**
