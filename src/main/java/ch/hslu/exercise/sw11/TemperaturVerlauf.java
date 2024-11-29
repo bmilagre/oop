@@ -1,4 +1,4 @@
-package ch.hslu.exercise.sw10;
+package ch.hslu.exercise.sw11;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -12,7 +12,7 @@ public class TemperaturVerlauf implements ITemperaturVerlauf {
         MAX
     }
 
-    private final List<Temperatur> temperaturen;
+    public final List<Temperatur> temperaturen;
 
     // Listeners of class TemperaturVerlauf
     private final List<PropertyChangeListener> changeListeners = new ArrayList<>();
@@ -28,9 +28,9 @@ public class TemperaturVerlauf implements ITemperaturVerlauf {
             this.firePropertyChangeEvent(event);
         }
 
-        if(this.min() != null && temperatur.compareTo(this.min()) <= 0) {
+        if(this.min() != null && temperatur.compareTo(this.max()) <= 0) {
            final PropertyChangeEvent event = new PropertyChangeEvent(this, TemperaturEventType.MIN.name(), this.min(), temperatur);
-           this.firePropertyChangeEvent(event);
+            this.firePropertyChangeEvent(event);
         }
 
         temperaturen.add(temperatur);

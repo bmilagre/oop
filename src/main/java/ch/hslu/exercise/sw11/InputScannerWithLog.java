@@ -1,10 +1,13 @@
-package ch.hslu.exercise.sw10;
+package ch.hslu.exercise.sw11;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.DataOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class InputScannerWithLog implements PropertyChangeListener {
@@ -17,6 +20,8 @@ public class InputScannerWithLog implements PropertyChangeListener {
 
         InputScannerWithLog listener = new InputScannerWithLog();
         temperaturVerlauf.addPropertyChangeListener(listener);
+
+        String inputFile = "/Users/bmilagre/Projects/hslu/oop/oop_exercises/exercises_files/sw11-stream";
 
         do {
             System.out.println("Bitte Temperatur eingeben (oder 'exit' zum Beenden): ");
@@ -37,10 +42,29 @@ public class InputScannerWithLog implements PropertyChangeListener {
             }
         } while (!"exit".equals(input));
 
-        System.out.println(temperaturVerlauf.toString());
+        if(temperaturVerlauf.getCount() >= 1){
+            // Add count to file
+            listener.writeDataToFileWithDataOutputStream(inputFile, temperaturVerlauf.getCount());
 
-        LOG.debug("Programm beendet");
+            // Add each temperatur value to file
+            for(Temperatur temperatur: temperaturVerlauf.temperaturen){
+                listener.writeDataToFileWithDataOutputStream(inputFile, temperatur.getCelsius());
+            }
+        }
+
+        System.out.println(temperaturVerlauf.toString());
         System.out.println("Programm beendet.");
+        LOG.debug("Programm beendet");
+    }
+
+    private void writeDataToFileWithDataOutputStream(final String file, final float value) {
+        try(DataOutputStream outputStream = new DataOutputStream(new FileOutputStream(file))) {
+            outputStream.writeFloat(value);
+
+            LOG.info("Data written to {}", file);
+        } catch (IOException e) {
+            LOG.error("Fehler bei writeDataToFileWithDataOutputStream: ", e.getMessage());
+        }
     }
 
     public void propertyChange(final PropertyChangeEvent event) {

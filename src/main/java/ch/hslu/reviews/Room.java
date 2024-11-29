@@ -68,6 +68,10 @@ public class Room {
         return this.state;
     }
 
+    public static boolean isAvailable(Room room) {
+        return room.getState() == RoomState.AVAILABLE;
+    }
+
     /**
      * Checks if two Room objects are equal based on their room numbers.
      *
@@ -84,7 +88,7 @@ public class Room {
             return false;
         }
 
-        return Objects.equals(room.roomNumber, this.roomNumber);
+        return Objects.equals(room.roomNumber, this.roomNumber) && Objects.equals(room.capacity, this.capacity) && Objects.equals(state, room.state);
     }
 
     /**
@@ -94,6 +98,6 @@ public class Room {
      * @return Hash code of the room.
      */
     public int hashCode(){
-        return Objects.hash(this.roomNumber, this.capacity);
+        return Objects.hash(this.roomNumber, this.capacity, this.state);
     }
 }

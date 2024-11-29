@@ -48,10 +48,38 @@ public class RoomManagement {
      * @return Room containing the room if found, IllegalArgumentException otherwise
      */
     public Room getRoom(final int roomNumber) {
-        if(!this.rooms.containsKey(roomNumber)) {
-           throw new IllegalArgumentException("Room with number " + roomNumber + " does not exist");
+        if (!this.rooms.containsKey(roomNumber)) {
+            throw new IllegalArgumentException("Room with number " + roomNumber + " does not exist");
         }
 
         return this.rooms.get(roomNumber);
+    }
+
+    /**
+     * Finds the best available room for the specified number of persons.
+     *
+     * @param amountPersons The number of persons the room should accommodate.
+     * @return The best available room, or null if no suitable room is found.
+     */
+    public Room getBestAvailableRoomForAmountPersons(int amountPersons) {
+        if (amountPersons <= 0) {
+            throw new IllegalArgumentException("Amount of persons must be greater than zero");
+        }
+
+        Room bestRoom = null;
+
+        for (Room room : rooms.values()) {
+            int capacity = room.getCapacity();
+            if (room.getState() == RoomState.AVAILABLE && capacity >= amountPersons && (bestRoom == null || capacity < bestRoom.getCapacity())) {
+                bestRoom = room;
+            }
+        }
+
+        return bestRoom; // Returns null if no available room matches the criteria
+    }
+
+    public boolean unlockRoomState(Room room){
+        room.setState(RoomState.AVAILABLE);
+        return room.getState() == RoomState.AVAILABLE;
     }
 }
