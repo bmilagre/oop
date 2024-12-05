@@ -1,5 +1,7 @@
 package ch.hslu.exercise.sw11;
 
+import jdk.jfr.EventType;
+
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
@@ -7,15 +9,10 @@ import java.util.Collections;
 import java.util.List;
 
 public class TemperaturVerlauf implements ITemperaturVerlauf {
-    public enum TemperaturEventType {
-        MIN,
-        MAX
-    }
-
     public final List<Temperatur> temperaturen;
 
     // Listeners of class TemperaturVerlauf
-    private final List<PropertyChangeListener> changeListeners = new ArrayList<>();
+    private final List<TemperaturEventListener> changeListeners = new ArrayList<>();
 
     public TemperaturVerlauf() {
         this.temperaturen = new ArrayList<>();
@@ -24,13 +21,13 @@ public class TemperaturVerlauf implements ITemperaturVerlauf {
     @Override
     public void add(Temperatur temperatur) {
         if(this.max() != null && temperatur.compareTo(this.max()) >= 0) {
-            final PropertyChangeEvent event = new PropertyChangeEvent(this, TemperaturEventType.MAX.name(), this.max(), temperatur);
-            this.firePropertyChangeEvent(event);
+            final TemperaturEvent event = new TemperaturEvent(this, this.max(), temperatur, TemperaturEventType.MAX);
+            this.fireTemperaturChangeEvent(event);
         }
 
         if(this.min() != null && temperatur.compareTo(this.max()) <= 0) {
-           final PropertyChangeEvent event = new PropertyChangeEvent(this, TemperaturEventType.MIN.name(), this.min(), temperatur);
-            this.firePropertyChangeEvent(event);
+            final TemperaturEvent event = new TemperaturEvent(this, this.min(), temperatur, TemperaturEventType.MIN);
+            this.fireTemperaturChangeEvent(event);
         }
 
         temperaturen.add(temperatur);
@@ -80,17 +77,21 @@ public class TemperaturVerlauf implements ITemperaturVerlauf {
         return "[TemperaturVerlauf]: Anzahl Temperaturen: " + this.getCount() + "; Durchschnitt: " + this.getAverage() + "; Min " + min() + "; Max " + max();
     }
 
-    public void addPropertyChangeListener(final PropertyChangeListener listener) {
-        this.changeListeners.add(listener);
+    public void addTemperaturChangeEventListener(final TemperaturEventListener listener) {
+        if(listener != null) {
+            this.changeListeners.add(listener);
+        }
     }
 
-    public void removePropertyChangeListener(final PropertyChangeListener listener) {
-        this.changeListeners.remove(listener);
+    public void removeTemperaturChangeEventListener(final TemperaturEventListener listener) {
+        if(listener != null) {
+            this.changeListeners.remove(listener);
+        }
     }
 
-    private void firePropertyChangeEvent(PropertyChangeEvent event) {
-        for(final PropertyChangeListener listener : this.changeListeners){
-            listener.propertyChange(event);
+    private void fireTemperaturChangeEvent(TemperaturEvent event) {
+        for(final TemperaturEventListener listener : this.changeListeners){
+            listener.temperaturChangeEvent(event);
         }
     }
 }

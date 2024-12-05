@@ -11,9 +11,9 @@ import java.io.IOException;
 import java.util.Scanner;
 
 /**
- * Aufgabe 1.3e
+ * Aufgabe 1.3
  */
-public class InputScannerWithLog implements PropertyChangeListener {
+public class InputScannerWithLog {
     private static final Logger LOG = LoggerFactory.getLogger(InputScannerWithLog.class);
 
     public static void main(String[] args) {
@@ -22,7 +22,12 @@ public class InputScannerWithLog implements PropertyChangeListener {
         TemperaturVerlauf temperaturVerlauf = new TemperaturVerlauf();
 
         InputScannerWithLog listener = new InputScannerWithLog();
-        temperaturVerlauf.addPropertyChangeListener(listener);
+        temperaturVerlauf.addTemperaturChangeEventListener(new TemperaturEventListener() {
+            @Override
+            public void temperaturChangeEvent(TemperaturEvent temperaturEvent) {
+                System.out.println(temperaturEvent.toString());
+            }
+        });
 
         String inputFile = "/Users/bmilagre/Projects/hslu/oop/oop_exercises/exercises_files/sw11-stream";
 
@@ -69,7 +74,7 @@ public class InputScannerWithLog implements PropertyChangeListener {
         }
     }
 
-    public void propertyChange(final PropertyChangeEvent event) {
+    public void propertyChange(final TemperaturEvent event) {
         if(event.getNewValue() != event.getOldValue()){
             System.out.println(event.toString());
         }
