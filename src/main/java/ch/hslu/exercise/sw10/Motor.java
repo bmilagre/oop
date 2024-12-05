@@ -65,11 +65,15 @@ public class Motor implements Switchable {
     }
 
     public void addPropertyChangeListener(final PropertyChangeListener listener) {
-        this.changeListeners.add(listener);
+        if(listener != null) {
+            this.changeListeners.add(listener);
+        }
     }
 
     public void removePropertyChangeListener(final PropertyChangeListener listener) {
-        this.changeListeners.remove(listener);
+        if(listener != null) {
+            this.changeListeners.remove(listener);
+        }
     }
 
     private void firePropertyChangeEvent(PropertyChangeEvent event) {

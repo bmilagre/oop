@@ -65,7 +65,7 @@ public class Car implements Switchable, PropertyChangeListener {
 
     @Override
     public void propertyChange(final PropertyChangeEvent event) {
-        if(event.getPropertyName() != event.getOldValue()){
+        if(event.getNewValue() != event.getOldValue()){
             LOG.debug("Property changed: {} from {} to {}", event.getPropertyName(), event.getOldValue(), event.getNewValue());
         }
     }
