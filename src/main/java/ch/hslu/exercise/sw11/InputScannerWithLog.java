@@ -10,6 +10,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * Aufgabe 1.3e
+ */
 public class InputScannerWithLog implements PropertyChangeListener {
     private static final Logger LOG = LoggerFactory.getLogger(InputScannerWithLog.class);
 
@@ -60,7 +63,6 @@ public class InputScannerWithLog implements PropertyChangeListener {
     private void writeDataToFileWithDataOutputStream(final String file, final float value) {
         try(DataOutputStream outputStream = new DataOutputStream(new FileOutputStream(file))) {
             outputStream.writeFloat(value);
-
             LOG.info("Data written to {}", file);
         } catch (IOException e) {
             LOG.error("Fehler bei writeDataToFileWithDataOutputStream: ", e.getMessage());

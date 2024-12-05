@@ -8,6 +8,9 @@ import java.nio.charset.Charset;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ *  Aufgabe 2.3
+ */
 public class ReadCSVFile {
     private static final Logger LOG = LoggerFactory.getLogger(ReadCSVFile.class);
     private final MeasuringPointProcess measuringPointProcess = new MeasuringPointProcess();

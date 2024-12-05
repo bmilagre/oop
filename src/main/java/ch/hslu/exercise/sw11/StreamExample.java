@@ -5,6 +5,9 @@ import org.slf4j.LoggerFactory;
 
 import java.io.*;
 
+/**
+ *  Aufgabe 1.3a bis 1.3d
+ */
 public class StreamExample {
     private static final Logger LOG = LoggerFactory.getLogger(StreamExample.class);
 

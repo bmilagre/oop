@@ -7,6 +7,9 @@ import java.io.*;
 import java.nio.charset.Charset;
 import java.util.Scanner;
 
+/**
+ * Aufgabe 1.3f
+ */
 public class ReadInputFile {
     private static final Logger LOG = LoggerFactory.getLogger(ReadInputFile.class);
 
