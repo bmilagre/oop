@@ -1,9 +1,5 @@
 package ch.hslu.exercise.sw11;
 
-import jdk.jfr.EventType;
-
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -20,12 +16,12 @@ public class TemperaturVerlauf implements ITemperaturVerlauf {
 
     @Override
     public void add(Temperatur temperatur) {
-        if(this.max() != null && temperatur.compareTo(this.max()) >= 0) {
+        if(this.max() != null && temperatur.compareTo(this.max()) > 0) {
             final TemperaturEvent event = new TemperaturEvent(this, this.max(), temperatur, TemperaturEventType.MAX);
             this.fireTemperaturChangeEvent(event);
         }
 
-        if(this.min() != null && temperatur.compareTo(this.max()) <= 0) {
+        if(this.min() != null && temperatur.compareTo(this.max()) < 0) {
             final TemperaturEvent event = new TemperaturEvent(this, this.min(), temperatur, TemperaturEventType.MIN);
             this.fireTemperaturChangeEvent(event);
         }

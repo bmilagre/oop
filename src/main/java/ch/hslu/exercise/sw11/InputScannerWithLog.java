@@ -3,8 +3,6 @@ package ch.hslu.exercise.sw11;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.io.DataOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
