@@ -100,4 +100,9 @@ public class Room {
     public int hashCode(){
         return Objects.hash(this.roomNumber, this.capacity, this.state);
     }
+
+    @Override
+    public String toString() {
+        return "Room " + this.roomNumber + ", capacity: " + this.capacity + ", state: " + this.state;
+    }
 }

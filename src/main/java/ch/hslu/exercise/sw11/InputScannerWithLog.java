@@ -20,11 +20,8 @@ public class InputScannerWithLog {
         TemperaturVerlauf temperaturVerlauf = new TemperaturVerlauf();
 
         InputScannerWithLog listener = new InputScannerWithLog();
-        temperaturVerlauf.addTemperaturChangeEventListener(new TemperaturEventListener() {
-            @Override
-            public void temperaturChangeEvent(TemperaturEvent temperaturEvent) {
-                System.out.println(temperaturEvent.toString());
-            }
+        temperaturVerlauf.addTemperaturChangeEventListener((TemperaturEvent temperaturEvent) -> {
+            System.out.println(temperaturEvent.toString());
         });
 
         String inputFile = "/Users/bmilagre/Projects/hslu/oop/oop_exercises/exercises_files/sw11-stream";

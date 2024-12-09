@@ -14,6 +14,12 @@ public class RoomManagement {
      */
     public RoomManagement() {
         this.rooms = new TreeMap<>();
+
+        this.rooms.put(600, new Room(600, 18));
+        this.rooms.put(602, new Room(602, 6));
+        this.rooms.put(603, new Room(603, 12));
+        this.rooms.put(605, new Room(605, 24));
+        this.rooms.put(610, new Room(610, 12));
     }
 
     /**
@@ -78,8 +84,15 @@ public class RoomManagement {
         return bestRoom; // Returns null if no available room matches the criteria
     }
 
-    public boolean unlockRoomState(Room room){
-        room.setState(RoomState.AVAILABLE);
-        return room.getState() == RoomState.AVAILABLE;
+    public void unlockRoomState(Room room){
+        if(room.getState() != RoomState.AVAILABLE) {
+            room.setState(RoomState.AVAILABLE);
+        }
+    }
+
+    public void lockRoomState(Room room){
+        if(room.getState() == RoomState.AVAILABLE){
+            room.setState(RoomState.BLOCKED);
+        }
     }
 }

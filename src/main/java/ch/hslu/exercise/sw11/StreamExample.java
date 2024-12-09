@@ -23,9 +23,9 @@ public class StreamExample {
         try(DataOutputStream outputStream = new DataOutputStream(new FileOutputStream(file))) {
             outputStream.writeInt(2024);
             outputStream.writeFloat(22.66F);
-            outputStream.writeDouble(234243);
+            outputStream.writeDouble(233.56);
             outputStream.writeBoolean(true);
-            outputStream.writeByte(2323);
+            outputStream.writeByte(48);
 
             LOG.info("Data written to {}", file);
         } catch (IOException e) {
@@ -35,17 +35,17 @@ public class StreamExample {
 
     private void readDataFromFileWithDataInputStream(final String file) {
         try(DataInputStream inputStream = new DataInputStream(new FileInputStream(file))) {
-            int inputContentInt = inputStream.readInt();
             float inputContentFloat = inputStream.readFloat();
+            int inputContentInt = inputStream.readInt();
             Double inputContentDouble = inputStream.readDouble();
             Boolean inputContentBoolean = inputStream.readBoolean();
             Byte inputContentByte = inputStream.readByte();
 
             LOG.info("Data read as int: {}", inputContentInt); // Response 2024
             LOG.info("Data read as float: {}", inputContentFloat); // Response 22.66
-            LOG.info("Data read as Double: {}", inputContentDouble); // Response 234243.0
+            LOG.info("Data read as Double: {}", inputContentDouble); // Response 233.56
             LOG.info("Data read as Boolean: {}", inputContentBoolean); // Response true
-            LOG.info("Data read as Byte: {}", inputContentByte); // Response 19
+            LOG.info("Data read as Byte: {}", inputContentByte); // Response 122
 
         } catch (IOException e){
             LOG.error("Fehler bei readDataFromFileWithDataInputStream: ", e);

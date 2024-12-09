@@ -24,6 +24,7 @@ public class ReadCSVFile {
         LOG.info("Höchste Temperatur war: {} mit der Uhrzeit: {}", readCSVFile.getMaxTemperatur().getTemperatur(), readCSVFile.getMaxTemperatur().getTime());
         LOG.info("Tiefste Temperatur war: {} mit der Uhrzeit: {}", readCSVFile.getMinTemperatur().getTemperatur(), readCSVFile.getMinTemperatur().getTime());
         LOG.info("Durchscnitt war: {}", readCSVFile.getAverageTemperatur());
+        LOG.info("Anzahl Temperaturen war: {}", readCSVFile.getCount());
     }
 
     private void readTextFile(final String file) {
@@ -58,5 +59,9 @@ public class ReadCSVFile {
 
     private float getAverageTemperatur() {
         return this.measuringPointProcess.getAverage();
+    }
+
+    private int getCount(){
+        return this.measuringPointProcess.getCount();
     }
 }

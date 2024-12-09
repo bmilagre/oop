@@ -15,7 +15,7 @@ public class ReadInputFile {
 
     public static void main(String[] args) {
         ReadInputFile readInputFile = new ReadInputFile();
-        String inputFile = "/Users/bmilagre/Projects/hslu/oop/oop_exercises/exercises_files/oop-sw11-stream";
+        String inputFile = "/Users/bmilagre/Projects/hslu/oop/oop_exercises/exercises_files/sw11-stream";
 
         readInputFile.readDataFromFileWithDataInputStream(inputFile);
     }
@@ -34,6 +34,8 @@ public class ReadInputFile {
             } catch (IOException e) {
                 LOG.error("Fehler bei readDataFromFileWithDataInputStream: ", e);
             }
+        } else {
+            LOG.info("File not found: {}", file);
         }
     }
 }

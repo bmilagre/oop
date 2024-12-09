@@ -8,37 +8,37 @@ public class RoomManagementTest {
     @Test
     void testConstructorWithInitialRoom() {
         RoomManagement management = new RoomManagement();
-        Room room = new Room(603, 12);
+        Room room = new Room(666, 12);
         management.addRoom(room);
 
-        Room retrievedRoom = management.getRoom(603);
+        Room retrievedRoom = management.getRoom(666);
         assertNotNull(retrievedRoom, "Room should not be null");
-        assertEquals(603, retrievedRoom.getRoomNumber(), "Room number should be 603");
+        assertEquals(666, retrievedRoom.getRoomNumber(), "Room number should be 666");
         assertEquals(12, retrievedRoom.getCapacity(), "Room capacity should be 12");
     }
 
     @Test
     void testAddRoom() {
         RoomManagement management = new RoomManagement();
-        Room room = new Room(603, 12);
+        Room room = new Room(666, 12);
 
         Room previousRoom = management.addRoom(room);
 
         assertNull(previousRoom, "No previous room should exist");
-        assertEquals(room, management.getRoom(603), "Added room should be retrievable");
+        assertEquals(room, management.getRoom(666), "Added room should be retrievable");
     }
 
     @Test
     void testAddRoomReplaceExisting() {
         RoomManagement management = new RoomManagement();
-        Room firstRoom = new Room(603, 12);
-        Room secondRoom = new Room(603, 15);
+        Room firstRoom = new Room(666, 12);
+        Room secondRoom = new Room(666, 15);
 
         management.addRoom(firstRoom);
         Room replacedRoom = management.addRoom(secondRoom);
 
         assertEquals(firstRoom, replacedRoom, "Should return the replaced room");
-        assertEquals(15, management.getRoom(603).getCapacity(), "New room should have updated capacity");
+        assertEquals(15, management.getRoom(666).getCapacity(), "New room should have updated capacity");
     }
 
     @Test
@@ -53,14 +53,14 @@ public class RoomManagementTest {
     @Test
     void testRemoveRoom() {
         RoomManagement management = new RoomManagement();
-        Room room = new Room(603, 12);
+        Room room = new Room(666, 12);
         management.addRoom(room);
 
-        Room removedRoom = management.removeRoom(603);
+        Room removedRoom = management.removeRoom(666);
 
         assertEquals(room, removedRoom, "Removed room should match original room");
         assertThrows(IllegalArgumentException.class,
-                () -> management.getRoom(603),
+                () -> management.getRoom(666),
                 "Getting removed room should throw IllegalArgumentException");
     }
 
@@ -68,7 +68,7 @@ public class RoomManagementTest {
     void testRemoveNonexistentRoom() {
         RoomManagement management = new RoomManagement();
 
-        Room removedRoom = management.removeRoom(603);
+        Room removedRoom = management.removeRoom(666);
 
         assertNull(removedRoom, "Removing nonexistent room should return null");
     }
@@ -78,7 +78,7 @@ public class RoomManagementTest {
         RoomManagement management = new RoomManagement();
 
         assertThrows(IllegalArgumentException.class,
-                () -> management.getRoom(603),
+                () -> management.getRoom(666),
                 "Getting nonexistent room should throw IllegalArgumentException");
     }
 }
