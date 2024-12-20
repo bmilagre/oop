@@ -9,14 +9,7 @@ package ch.hslu.exercise.sw13;
 public class Motor {
 
     // Current state of the motor
-    private MotorState state;
-
-    /**
-     * Constructor initializes motor to OFF state by default
-     */
-    public Motor() {
-        this.state = MotorState.OFF;
-    }
+    private MotorState state = MotorState.OFF;
 
     public final MotorState getState() {
         return state;

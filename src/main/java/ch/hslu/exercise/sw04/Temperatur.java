@@ -62,7 +62,7 @@ public class Temperatur {
     /**
      * Changes the earthTemperatur to the desired tempearatur in celsius
      *
-     * @param tempeatur the desired temperatur in celsius
+     * @param temperatur the desired temperatur in celsius
      */
     public void changeEarthTemperaturInCelsius(float temperatur){
         this.earthTemperaturInCelsius += temperatur;

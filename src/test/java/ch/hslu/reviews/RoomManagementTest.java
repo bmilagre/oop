@@ -81,4 +81,27 @@ public class RoomManagementTest {
                 () -> management.getRoom(666),
                 "Getting nonexistent room should throw IllegalArgumentException");
     }
+
+    @Test
+    void testIfErrorReturnsWhenBestAvailableRoomForAmountPersonsIsZero(){
+        RoomManagement management = new RoomManagement();
+        assertThrows(IllegalArgumentException.class, () -> management.getBestAvailableRoomForAmountPersons(0), "Amount of persons must be greater than zero");
+    }
+
+    @Test
+    void testIfBestAvailableRoomForAmountPersonsReturnsCorrectRoomForSize(){
+        RoomManagement management = new RoomManagement();
+        Room correctRoom = management.getRoom(603);
+
+        assertEquals(correctRoom, management.getBestAvailableRoomForAmountPersons(7), "Managment doesnt return smallest room for 7 persons");
+    }
+
+    @Test
+    void testIfRoomIsUnlocked(){
+        RoomManagement management = new RoomManagement();
+        Room currentRoom = management.getRoom(603);
+        management.lockRoomState(currentRoom);
+
+        assertEquals(currentRoom.getState(), RoomState.BLOCKED, "Managment could not lock room");
+    }
 }

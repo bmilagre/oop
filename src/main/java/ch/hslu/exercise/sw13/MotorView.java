@@ -36,7 +36,7 @@ public class MotorView extends JFrame {
 
     /**
      * The listener will be the event when the button is pressed
-     * @params {ActionListener} listener
+     * @param listener
      */
     public void addButtonActionListener(ActionListener listener) {
         buttonOn.addActionListener(listener);
